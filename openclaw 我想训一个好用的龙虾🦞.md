@@ -3,7 +3,7 @@
 
 模型能力的跃迁，带来了应用层的结构性变化。OpenRouter 每周处理 Token 量到了万亿级，消耗榜前几位——OpenClaw、Kilo Code、Claude Code——清一色是 Agent 应用 [^3]。
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2026/png/78674/1772624703869-daf37586-1aac-4317-9d9a-7275a348f4bc.png)
+![](./assets/openclaw_openrouter_tokens.png)
 
 行业押注也在跟进。Anthropic 发布 Claude Cowork（2026 年 1 月），定位通用知识工作 Agent。OpenAI 用 GDPVal 基准量化 Agent 价值——GPT-5.2 在 44 个职业里，约 70.9% 的任务上表现优于或等同于有 14 年以上经验的人类专家 [^5]。用经济学指标衡量 Agent，这是方向上的变化。
 
@@ -151,7 +151,7 @@ NanoClaw 的做法是这样的：
 ```
 
 ### 未来 Agent：你猜猜需要多长时间？
-![](https://intranetproxy.alipay.com/skylark/lark/0/2026/png/78674/1772625006076-5b1bc595-fa32-4988-92ae-11cfcd2dc790.png)
+![](./assets/openclaw_future_agent.png)
 
 ---
 
