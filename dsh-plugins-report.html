@@ -107,25 +107,30 @@ h2 .idx {
 .fw-rule .r-low { color: var(--muted); }
 .fw-rule .r-none { color: var(--bad); border-color: rgba(240,96,92,.4); }
 
-/* ===== Eco head (饼图 + 文案) ===== */
+/* ===== Eco head (大饼图 + 图例/文案) ===== */
 .eco-head {
-  display: grid; grid-template-columns: 340px 1fr; gap: 28px; align-items: center;
+  display: grid; grid-template-columns: 320px 1fr; gap: 32px; align-items: center;
   background: linear-gradient(135deg, #101a2e 0%, #141926 55%, #1a1c30 100%);
-  border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 30px; margin-bottom: 22px;
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 32px; margin-bottom: 22px;
   position: relative; overflow: hidden;
 }
 .eco-head::before {
   content:''; position: absolute; top:-60px; right:-60px; width:220px; height:220px;
   background: radial-gradient(circle, rgba(77,159,255,.22) 0%, transparent 70%); pointer-events: none;
 }
-.eco-left { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.eco-left h4 { font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: 2px; margin-bottom: 6px; }
+.eco-left { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+.eco-left h4 { font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: 2px; }
 .eco-left .donut-wrap { justify-content: center; }
-.eco-left svg { width: 150px; height: 150px; }
-.eco-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: center; margin-top: 8px; font-size: 11.5px; color: var(--muted); }
-.eco-legend div { display: flex; align-items: center; gap: 5px; }
-.eco-legend .sw { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+.eco-left svg { width: 240px; height: 240px; }
 .eco-right { position: relative; z-index: 1; }
+.eco-legend {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px;
+  margin-bottom: 16px; font-size: 12px; color: var(--muted);
+}
+.eco-legend div { display: flex; align-items: center; gap: 6px; }
+.eco-legend .sw { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.eco-legend .sw + span { margin-right: 2px; }
+.eco-legend b { color: var(--text); font-weight: 600; margin-left: auto; }
 .eco-badge {
   display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2px;
   color: #0b0e14; background: linear-gradient(90deg, #ffd66b, #ff9a4d);
@@ -270,27 +275,27 @@ footer code { background: var(--bg3); padding: 1px 6px; border-radius: 4px; font
   <!-- ===== KPI ===== -->
   <div class="kpis" id="kpis"></div>
 
-  <!-- ===== 生态全景：8+1 大类（01） ===== -->
+  <!-- ===== 生态全景：8 大类（01） ===== -->
   <section id="macro">
-    <div class="sec-head"><h2><span class="idx">01</span>生态全景：8+1 大类</h2></div>
+    <div class="sec-head"><h2><span class="idx">01</span>生态全景：8 大类</h2></div>
     <p class="sec-sub">按「插件帮用户 / Agent 解决哪一层的问题」划分 8 大类 + 1 兜底。点击大类可展开细类与代表例子。</p>
 
-    <!-- 头部：左饼图 + 右煽动文案 -->
+    <!-- 头部：左大饼图 + 右图例与文案 -->
     <div class="eco-head">
       <div class="eco-left">
         <h4>生态分布</h4>
         <div id="ecoDonut"></div>
-        <div class="eco-legend" id="ecoLegend"></div>
       </div>
       <div class="eco-right">
+        <div class="eco-legend" id="ecoLegend"></div>
         <div class="eco-badge">🔥 火爆中</div>
         <h3>3 天 698 个插件<br>社区 <span class="grad">大爆发</span></h3>
         <p class="eco-punch">从桌宠到企业级 SaaS，从「补个功能」到「做一门生意」——<br><b>8 大类场景</b>，人人都能在 DeepSeek Harness 上造出点什么。</p>
         <div class="eco-stats">
           <div><b>698</b><span>插件总数</span></div>
-          <div><b>8+1</b><span>应用场景</span></div>
+          <div><b>8</b><span>应用场景</span></div>
           <div><b>56</b><span>普适刚需</span></div>
-          <div><b>8</b><span>已跑通变现</span></div>
+          <div><b>8</b><span>有变现可能</span></div>
         </div>
         <p class="eco-tip">👆 点开每个大类，看它到底解决什么问题</p>
       </div>
@@ -305,9 +310,9 @@ footer code { background: var(--bg3); padding: 1px 6px; border-radius: 4px; font
     <div class="qa" id="qaList"></div>
   </section>
 
-  <!-- ===== 商业化判断（03：简化框架 + 高变现合并） ===== -->
+  <!-- ===== 商业化判断（03：简化框架 + 变现潜力合并） ===== -->
   <section id="monetize">
-    <div class="sec-head"><h2><span class="idx">03</span>商业化判断：四道门槛 × 高变现案例</h2></div>
+    <div class="sec-head"><h2><span class="idx">03</span>商业化判断：四道门槛 × 变现潜力案例</h2></div>
     <p class="sec-sub">判断一个插件方向能否商业化，只看 <b>4 道门槛</b>：全部通过才认定「有商业化机会」。698 个插件里只有 <b>8 个</b> 全过。</p>
 
     <div class="framework">
@@ -430,7 +435,7 @@ const kpis = [
   {num:DATA.length, label:'插件 / 讨论总数'},
   {num:MACRO.length-1, label:'有效大类', pct:'8 类'},
   {num:56, label:'普适需求插件', pct:'8%'},
-  {num:8, label:'高变现插件', pct:'1.1%', cls:'gold'},
+  {num:8, label:'有变现潜力插件', pct:'1.1%', cls:'gold'},
 ];
 document.getElementById('kpis').innerHTML = kpis.map(k=>`
   <div class="kpi ${k.cls||''}">
@@ -489,23 +494,23 @@ const MACRO_COLORS = ['#4d9fff','#43c97d','#e8c05a','#a371f7','#ff9a4d','#39c5cf
     acc = end;
     return {m, v, start, end, color: MACRO_COLORS[i % MACRO_COLORS.length]};
   });
-  const R = 62, C = 2*Math.PI*R;
+  const R = 78, CX = 100, CY = 100, C = 2*Math.PI*R;
   let offset = 0;
   const circles = segs.map(s=>{
     const len = s.v/total*C;
-    const dash = `${len-1.8} ${C-len+1.8}`;
-    const o = `<circle r="${R}" cx="80" cy="80" fill="none" stroke="${s.color}" stroke-width="18"
-      stroke-dasharray="${dash}" stroke-dashoffset="${-offset}" transform="rotate(-90 80 80)"></circle>`;
+    const dash = `${len-2.4} ${C-len+2.4}`;
+    const o = `<circle r="${R}" cx="${CX}" cy="${CY}" fill="none" stroke="${s.color}" stroke-width="24"
+      stroke-dasharray="${dash}" stroke-dashoffset="${-offset}" transform="rotate(-90 ${CX} ${CY})"></circle>`;
     offset += len;
     return o;
   }).join('');
   const legend = segs.map(s=>`
-    <div><span class="sw" style="background:${s.color}"></span>${s.m.name} ${s.v}</div>`).join('');
+    <div><span class="sw" style="background:${s.color}"></span><span>${s.m.name}</span><b>${s.v}</b></div>`).join('');
   document.getElementById('ecoDonut').innerHTML =
-    `<svg width="160" height="160" viewBox="0 0 160 160">
+    `<svg width="200" height="200" viewBox="0 0 200 200">
       ${circles}
-      <text x="80" y="76" text-anchor="middle" fill="#e8edf6" font-size="22" font-weight="800">698</text>
-      <text x="80" y="96" text-anchor="middle" fill="#93a0b4" font-size="10">个插件</text>
+      <text x="${CX}" y="${CY-2}" text-anchor="middle" fill="#e8edf6" font-size="30" font-weight="800">${total}</text>
+      <text x="${CX}" y="${CY+24}" text-anchor="middle" fill="#93a0b4" font-size="13">个插件</text>
     </svg>`;
   document.getElementById('ecoLegend').innerHTML = legend;
 })();
@@ -554,7 +559,7 @@ function toggleMacro(i) {
 /* 默认展开第一个 */
 document.querySelector('.macro-item[data-macro="0"]').classList.add('open');
 
-/* ============ 高变现 ============ */
+/* ============ 变现潜力案例 ============ */
 const highItems = DATA.filter(d=>d.monetization==='high');
 const highDetail = {
   919:['记忆','TMCRA 云服务：账号 + 存储 + 订阅收费'],
@@ -580,7 +585,7 @@ document.getElementById('highGrid').innerHTML = highItems.map(d=>{
 const qa = [
   { q:'Q1 · 这些 plugin 到底有什么用？', a:'<span class="hl">一句话：为 DeepSeek Harness 补齐官方没做的周边能力。</span>主流是六大刚需 —— 记忆（换会话不丢上下文）、安全（审批/密钥/供应链）、费用（token 花了多少）、能力补全（识图/语音/浏览器）、体验包装（桌面壳/UI/通知）、生态基建（市场/文档/迁移）。剩下约 1/3 是重复造轮子、小众工具和娱乐帖。' },
   { q:'Q2 · 解决的是普适问题吗？', a:'<span class="hl">约 6 成是真普适 / 常见需求，3 成小众，1 成玩具。</span>最普适的是记忆、安全、费用三大件 —— 恰好也是所有 AI 编程工具的兵家必争之地。但「需求普适」≠「你的插件能胜出」，因为同质化极其严重（桌面壳 51 个、费用看板 31 个、视觉桥 43 个、记忆 42 个）。' },
-  { q:'Q3 · 未来这个方向能挣钱吗？', a:'<span class="hl">能，但只有一条路：插件免费引流 + 服务按量收费。</span><ul><li><b>已验证能挣的</b>：记忆 SaaS（TMCRA、MemoryLake、deepDDW）、托管 Agent（SandBase）、企业安全（ACSP）、搜索/抓取（Firecrawl）、医疗垂直 SaaS（LinkHealth）。</li><li><b>基本挣不到的</b>：纯客户端工具、皮肤桌宠、费用看板、重复的桌面壳。</li><li><b>整体判断</b>：插件生态的「直接变现」还很早期（高变现仅 1.1%），但作为通往 AI 服务市场的入口价值被低估。<span class="hl">方向值得押注，但押的是「服务」不是「插件」。</span></li></ul>' },
+  { q:'Q3 · 未来这个方向能挣钱吗？', a:'<span class="hl">有可能，但路只有一条：插件免费引流 + 服务按量收费。</span>注意：以下只是「模式上最有可能跑通」的判断，不代表已经赚钱。<ul><li><b>模式最可能跑通的</b>：记忆云服务（TMCRA、MemoryLake、deepDDW）、托管 Agent（SandBase）、企业安全（ACSP）、搜索/抓取（Firecrawl）、医疗垂直 SaaS（LinkHealth）——共同点是都有云端收费载体。</li><li><b>基本没戏的</b>：纯客户端工具、皮肤桌宠、费用看板、重复的桌面壳。</li><li><b>整体判断</b>：插件生态的「直接变现」还很早期（有变现潜力仅 1.1%），但作为通往 AI 服务市场的入口价值被低估。<span class="hl">方向值得押注，但押的是「服务」不是「插件」。</span></li></ul>' },
 ];
 document.getElementById('qaList').innerHTML = qa.map(q=>`
   <div class="qa-block"><div class="q">${q.q}</div><div class="a">${q.a}</div></div>`).join('');
