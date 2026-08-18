@@ -107,6 +107,46 @@ h2 .idx {
 .fw-rule .r-low { color: var(--muted); }
 .fw-rule .r-none { color: var(--bad); border-color: rgba(240,96,92,.4); }
 
+/* ===== Eco head (饼图 + 文案) ===== */
+.eco-head {
+  display: grid; grid-template-columns: 340px 1fr; gap: 28px; align-items: center;
+  background: linear-gradient(135deg, #101a2e 0%, #141926 55%, #1a1c30 100%);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 30px; margin-bottom: 22px;
+  position: relative; overflow: hidden;
+}
+.eco-head::before {
+  content:''; position: absolute; top:-60px; right:-60px; width:220px; height:220px;
+  background: radial-gradient(circle, rgba(77,159,255,.22) 0%, transparent 70%); pointer-events: none;
+}
+.eco-left { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.eco-left h4 { font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: 2px; margin-bottom: 6px; }
+.eco-left .donut-wrap { justify-content: center; }
+.eco-left svg { width: 150px; height: 150px; }
+.eco-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; justify-content: center; margin-top: 8px; font-size: 11.5px; color: var(--muted); }
+.eco-legend div { display: flex; align-items: center; gap: 5px; }
+.eco-legend .sw { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+.eco-right { position: relative; z-index: 1; }
+.eco-badge {
+  display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  color: #0b0e14; background: linear-gradient(90deg, #ffd66b, #ff9a4d);
+  border-radius: 999px; padding: 3px 14px; margin-bottom: 14px;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,214,107,.5); } 50% { box-shadow: 0 0 0 8px rgba(255,214,107,0); } }
+.eco-right h3 { font-size: 34px; font-weight: 800; line-height: 1.25; letter-spacing: -.5px; margin-bottom: 14px; }
+.eco-right h3 .grad {
+  background: linear-gradient(90deg, #ffd66b, #ff9a4d, #ff6b9d);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.eco-punch { font-size: 14.5px; color: var(--muted); line-height: 1.8; margin-bottom: 18px; }
+.eco-punch b { color: var(--accent2); }
+.eco-stats { display: flex; gap: 22px; flex-wrap: wrap; margin-bottom: 16px; }
+.eco-stats div { text-align: center; }
+.eco-stats b { display: block; font-size: 26px; font-weight: 800; color: var(--gold); line-height: 1.1; }
+.eco-stats span { font-size: 12px; color: var(--muted); }
+.eco-tip { font-size: 13px; color: var(--accent2); }
+@media (max-width: 860px) { .eco-head { grid-template-columns: 1fr; } .eco-right h3 { font-size: 27px; } }
+
 /* ===== Macro hierarchy ===== */
 .macro-list { display: flex; flex-direction: column; gap: 10px; }
 .macro-item {
@@ -130,10 +170,10 @@ h2 .idx {
   display: flex; align-items: center; gap: 12px; padding: 11px 4px; border-bottom: 1px dashed var(--border); font-size: 14px;
 }
 .macro-sub:last-child { border-bottom: none; }
-.macro-sub .s-name { font-weight: 600; min-width: 110px; }
-.macro-sub .s-count { color: var(--muted); font-size: 12.5px; min-width: 60px; }
-.macro-sub .s-example { flex: 1; color: var(--muted); font-size: 13px; }
-.macro-sub .s-example b { color: var(--accent2); font-weight: 600; }
+.macro-sub .s-name { font-weight: 600; min-width: 130px; }
+.macro-sub .s-count { color: var(--muted); font-size: 12.5px; min-width: 64px; }
+.macro-sub .s-example { flex: 1; color: var(--text); font-size: 13.5px; line-height: 1.5; }
+.macro-sub .s-example b { color: var(--accent2); font-weight: 600; margin-right: 6px; }
 .macro-sub .s-tag { font-size: 11px; padding: 1px 8px; border-radius: 999px; white-space: nowrap; }
 .macro-sub .s-tag.high { background: rgba(232,192,90,.15); color: var(--gold); border: 1px solid rgba(232,192,90,.4); }
 .macro-sub .s-tag.none { background: rgba(240,96,92,.12); color: var(--bad); border: 1px solid rgba(240,96,92,.35); }
@@ -230,60 +270,71 @@ footer code { background: var(--bg3); padding: 1px 6px; border-radius: 4px; font
   <!-- ===== KPI ===== -->
   <div class="kpis" id="kpis"></div>
 
-  <!-- ===== 商业化判断框架 ===== -->
-  <section id="framework">
-    <div class="sec-head"><h2><span class="idx">01</span>商业化判断框架</h2></div>
-    <p class="sec-sub">判断一个插件方向能否商业化，我们用了 <b>4 道门槛（Gate）</b>：全部通过才认定「有商业化机会」。这是整个报告价值判断的底层逻辑。</p>
+  <!-- ===== 生态全景：8+1 大类（01） ===== -->
+  <section id="macro">
+    <div class="sec-head"><h2><span class="idx">01</span>生态全景：8+1 大类</h2></div>
+    <p class="sec-sub">按「插件帮用户 / Agent 解决哪一层的问题」划分 8 大类 + 1 兜底。点击大类可展开细类与代表例子。</p>
 
-    <div class="framework">
-      <div class="fw-title">🧭 四道门槛 —— 全部通过才算「有商业化机会」</div>
-      <div class="fw-grid" id="fwGrid"></div>
-      <div class="fw-rule">
-        <div class="rule r-high"><b>🟡 有商业化机会</b>4 道门槛全过：有远端载体 + 价值大 + 有护城河 + 价值归自己</div>
-        <div class="rule r-med"><b>🔵 有机会但要运营</b>载体过了，但缺护城河 / 价值被部分拿走 / 需企业场景硬做</div>
-        <div class="rule r-low"><b>⚪ 基本没戏</b>纯本地无载体、价值被上游拿走、同质化</div>
-        <div class="rule r-none"><b>🔴 无</b>玩具 / 皮肤 / 桌宠 / 非插件</div>
+    <!-- 头部：左饼图 + 右煽动文案 -->
+    <div class="eco-head">
+      <div class="eco-left">
+        <h4>生态分布</h4>
+        <div id="ecoDonut"></div>
+        <div class="eco-legend" id="ecoLegend"></div>
+      </div>
+      <div class="eco-right">
+        <div class="eco-badge">🔥 火爆中</div>
+        <h3>3 天 698 个插件<br>社区 <span class="grad">大爆发</span></h3>
+        <p class="eco-punch">从桌宠到企业级 SaaS，从「补个功能」到「做一门生意」——<br><b>8 大类场景</b>，人人都能在 DeepSeek Harness 上造出点什么。</p>
+        <div class="eco-stats">
+          <div><b>698</b><span>插件总数</span></div>
+          <div><b>8+1</b><span>应用场景</span></div>
+          <div><b>56</b><span>普适刚需</span></div>
+          <div><b>8</b><span>已跑通变现</span></div>
+        </div>
+        <p class="eco-tip">👆 点开每个大类，看它到底解决什么问题</p>
       </div>
     </div>
 
-    <p class="sec-sub" style="margin-bottom:14px;font-size:13.5px;color:var(--muted);background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px">
-      🔎 <b style="color:var(--accent2)">用这套框架照镜子：</b>报告写作本身也用了这套框架 —— 比如浏览器自动化插件 <b style="color:var(--gold)">dsh-plugin-browser-use</b>（#2853），它本地运行、看似「纯本地」，但 Gate 1 看的是<b>它在把站点操作经验提炼为 skill 时依赖远端服务与数据回流</b>；Gate 3 的护城河则在于<b>跨站点、跨任务积累的操作数据与经验库</b>—— 这正是「价值在自己手里、越用越厚」的典型。框架不是只用来评别人，也用来评自己。
-    </p>
-
-    <p class="sec-sub" style="margin-bottom:0;font-size:13px;color:var(--muted)">
-      ⚠️ 这是启发式判断，不是投资分析：判的是「类别天花板」而非「某人的成败」，擅长筛方向、不预测哪家能成。
-    </p>
-  </section>
-
-  <!-- ===== 大类层级 ===== -->
-  <section id="macro">
-    <div class="sec-head"><h2><span class="idx">02</span>生态全景：8+1 大类</h2></div>
-    <p class="sec-sub">按「插件帮用户 / Agent 解决哪一层的问题」划分 8 大类 + 1 兜底。点击大类可展开细类与代表例子。</p>
     <div class="macro-list" id="macroList"></div>
   </section>
 
-  <!-- ===== 高变现 ===== -->
-  <section id="highmon">
-    <div class="sec-head"><h2><span class="idx">03</span>8 个「高变现」插件 —— 共同规律</h2></div>
-    <p class="sec-sub">698 个插件里只有 8 个通过全部门槛。它们揭示了整个生态最值钱的模式：<b>插件免费引流，服务按量收费</b>。</p>
-    <div class="high-grid" id="highGrid"></div>
-  </section>
-
-  <!-- ===== 三条洞察 ===== -->
-  <section id="insights">
-    <div class="sec-head"><h2><span class="idx">04</span>三个最值得注意的横向规律</h2></div>
-    <div class="insights" id="insightsGrid"></div>
-  </section>
-
-  <!-- ===== Q&A ===== -->
+  <!-- ===== 回答你的三个问题（02） ===== -->
   <section id="qa">
-    <div class="sec-head"><h2><span class="idx">05</span>回答你的三个问题</h2></div>
+    <div class="sec-head"><h2><span class="idx">02</span>回答你的三个问题</h2></div>
     <div class="qa" id="qaList"></div>
   </section>
 
-  <!-- ===== 全量目录 ===== -->
+  <!-- ===== 商业化判断（03：简化框架 + 高变现合并） ===== -->
+  <section id="monetize">
+    <div class="sec-head"><h2><span class="idx">03</span>商业化判断：四道门槛 × 高变现案例</h2></div>
+    <p class="sec-sub">判断一个插件方向能否商业化，只看 <b>4 道门槛</b>：全部通过才认定「有商业化机会」。698 个插件里只有 <b>8 个</b> 全过。</p>
+
+    <div class="framework">
+      <div class="fw-title">🧭 四道门槛 —— 全过才算「有商业化机会」</div>
+      <div class="fw-grid" id="fwGrid"></div>
+      <div class="fw-rule">
+        <div class="rule r-high"><b>🟡 有商业化机会</b>四道全过</div>
+        <div class="rule r-med"><b>🔵 有机会但要运营</b>载体过了、缺护城河</div>
+        <div class="rule r-low"><b>⚪ 基本没戏</b>纯本地 / 价值被上游拿走</div>
+        <div class="rule r-none"><b>🔴 无</b>玩具 / 皮肤 / 桌宠</div>
+      </div>
+    </div>
+
+    <div class="high-grid" id="highGrid" style="margin-top:24px"></div>
+
+    <p class="sec-sub" style="margin-top:22px;margin-bottom:14px;font-size:13.5px;color:var(--muted);background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:12px 16px">
+      🔎 <b style="color:var(--accent2)">用这套框架照镜子：</b>报告写作本身也用了这套框架 —— 比如浏览器自动化插件 <b style="color:var(--gold)">dsh-plugin-browser-use</b>（#2853），它本地运行、看似「纯本地」，但 Gate 1 看的是<b>它在把站点操作经验提炼为 skill 时依赖远端服务与数据回流</b>；Gate 3 的护城河则在于<b>跨站点、跨任务积累的操作数据与经验库</b>—— 这正是「价值在自己手里、越用越厚」的典型。框架不只用来评别人，也用来评自己。
+    </p>
+
+    <p class="sec-sub" style="margin-bottom:0;font-size:13px;color:var(--muted)">
+      💡 关于大量免费插件：它们多数是<b>开源贡献与引流</b> —— 作者以 star、认可、社区影响为目标，这本身不是商业失败，而是生态繁荣的一部分。真正走商业化的少数插件（TMCRA、MemoryLake、Firecrawl 等）采用「开源引流 + 服务收费」，与 DeepSeek 官方「开源模型 + 商业 API」如出一辙。
+    </p>
+  </section>
+
+  <!-- ===== 全量目录（04） ===== -->
   <section id="catalog">
-    <div class="sec-head"><h2><span class="idx">06</span>全量插件目录（698 · 可筛选）</h2></div>
+    <div class="sec-head"><h2><span class="idx">04</span>全量插件目录（698 · 可筛选）</h2></div>
     <p class="sec-sub">搜索标题 / 编号 / 关键词，或按细类、普适性、商业化潜力筛选。</p>
     <div class="toolbar">
       <input type="text" id="searchInput" placeholder="🔍 搜索插件名 / 编号 / 关键词…">
@@ -360,18 +411,6 @@ const MACRO = [
   { name:'其它', icon:'🗂️', cats:['other','non-plugin'] },
 ];
 
-/* ============ 每个细类的代表例子（讨论号） ============ */
-const CAT_EXAMPLE = {
-  'desktop-client':1855,'ui-ux':1826,'mobile-remote':1384,'notifications':1084,
-  'ui-skin':850,'pet-gamification':1843,'migration-import':2523,
-  'developer-tools':925,'agent-orchestration':114,'workflow-pipeline':2313,
-  'vision-image':384,'voice-audio':263,'web-search':2635,'browser-automation':2853,
-  'memory':919,'mcp-integration':1943,'chat-channel':1387,
-  'cost-usage':318,'security-permission':1803,
-  'marketplace-registry':3025,'docs-tutorial':831,
-  'other':528,'non-plugin':20,
-};
-
 /* ============ 商业化框架四门槛 ============ */
 const FW = [
   { n:'GATE 1', t:'产品形态：纯本地 or 对远端有依赖', d:'纯本地 = 数据不出机器、无账号/用量概念 = 没有持续计费的载体。对远端有依赖（调 API 取数据、存储/算力/用量约束）= 天然有「按量 / 按月 / 按账号」收费载体。', ex:'例：费用看板纯本地 → 不过；记忆云端存储 → 过' },
@@ -412,11 +451,72 @@ document.getElementById('fwGrid').innerHTML = FW.map(g=>`
 const byNum = {};
 DATA.forEach(d => { byNum[d.num] = d; });
 
+/* 每个细类的代表例子：讨论号 + 中文功能描述（说明是干什么的） */
+const CAT_EXAMPLE_DESC = {
+  'desktop-client':[1855,'把官方 Web UI 封装成原生桌面客户端，macOS/Windows/Linux 三平台一键安装，带托盘、自动更新与凭据加密'],
+  'ui-ux':[1826,'目录文件浏览 + Git 侧边栏 + 终端，让 DSH 界面像 IDE 一样管理项目'],
+  'mobile-remote':[1384,'把 SSH 远程主机当透明工作区：Web 里直接读写远端文件、跑命令'],
+  'notifications':[1084,'任务完成/出错/被阻塞时弹桌面通知，不用一直守着界面'],
+  'ui-skin':[850,'给 DSH Web 换壁纸 / 调磨砂模糊，纯个性化美化'],
+  'pet-gamification':[1843,'桌面养成宠物：吃真实工作记录进化，把干活变成游戏'],
+  'migration-import':[2523,'把 Claude Code / Codex / OpenCode / Hermes 的会话、记忆、技能一键搬进 DSH'],
+  'developer-tools':[925,'一句话为项目生成全套 AI 编程规范（AGENTS.md + CI + 测试制度）'],
+  'agent-orchestration':[114,'条件驱动唤醒：agent 注册监控条件后休眠，条件成立自动叫醒并交报告'],
+  'workflow-pipeline':[2313,'任务看板：创建→执行→人工审核→反馈重试→归档，五态工作流'],
+  'vision-image':[384,'给纯文本模型补"眼睛"：把图片交给外部视觉 API 转成文字'],
+  'voice-audio':[263,'全双工实时语音：语音驱动 Agent、随时插话、结果语音播报'],
+  'web-search':[2635,'把内置搜索/抓取指向 Firecrawl，支持 JS 渲染、反爬与 PDF 抓取'],
+  'browser-automation':[2853,'复用你已登录的 Chrome 做网页自动化：0 token、防风控、绕登录墙'],
+  'memory':[919,'云记忆：跨会话 / 跨软件记住项目进度与决策，无需重新介绍'],
+  'mcp-integration':[1943,'工作区级 MCP 管理器：声明即自动注册，设置页统一查看状态'],
+  'chat-channel':[1387,'把 DSH 接进飞书：长连接收消息、回复分片、免公网 IP'],
+  'cost-usage':[318,'实时追踪每次会话的 token 消耗与费用，预算告警防超支'],
+  'security-permission':[1803,'Claude Code 风格声明式权限规则：allow / deny / ask 细粒度管控'],
+  'marketplace-registry':[3025,'聚合 2545 个插件的市场：可搜索、可排序、可一键安装'],
+  'docs-tutorial':[831,'12+ 章中文从 0 到 1 手册（双语 + benchmark + PDF）'],
+  'other':[528,'邮件插件：查收件箱、读全文、搜索、审批后代发'],
+  'non-plugin':[20,'应援打气帖（非插件，占个位）'],
+};
+
+/* 生态分布饼图（左） */
+const MACRO_COLORS = ['#4d9fff','#43c97d','#e8c05a','#a371f7','#ff9a4d','#39c5cf','#f778ba','#79c0ff','#6e7681'];
+(function renderEcoDonut() {
+  const total = DATA.length;
+  let acc = 0;
+  const segs = MACRO.map((m,i)=>{
+    const v = byMacro[m.name];
+    const start = acc, end = acc + v/total*360;
+    acc = end;
+    return {m, v, start, end, color: MACRO_COLORS[i % MACRO_COLORS.length]};
+  });
+  const R = 62, C = 2*Math.PI*R;
+  let offset = 0;
+  const circles = segs.map(s=>{
+    const len = s.v/total*C;
+    const dash = `${len-1.8} ${C-len+1.8}`;
+    const o = `<circle r="${R}" cx="80" cy="80" fill="none" stroke="${s.color}" stroke-width="18"
+      stroke-dasharray="${dash}" stroke-dashoffset="${-offset}" transform="rotate(-90 80 80)"></circle>`;
+    offset += len;
+    return o;
+  }).join('');
+  const legend = segs.map(s=>`
+    <div><span class="sw" style="background:${s.color}"></span>${s.m.name} ${s.v}</div>`).join('');
+  document.getElementById('ecoDonut').innerHTML =
+    `<svg width="160" height="160" viewBox="0 0 160 160">
+      ${circles}
+      <text x="80" y="76" text-anchor="middle" fill="#e8edf6" font-size="22" font-weight="800">698</text>
+      <text x="80" y="96" text-anchor="middle" fill="#93a0b4" font-size="10">个插件</text>
+    </svg>`;
+  document.getElementById('ecoLegend').innerHTML = legend;
+})();
+
 function catExampleHTML(cat) {
-  const num = CAT_EXAMPLE[cat];
+  const pair = CAT_EXAMPLE_DESC[cat];
+  if (!pair) return '';
+  const num = pair[0], desc = pair[1];
   const d = byNum[num];
-  if (!d) return '';
-  return `<b>#${d.num}</b> ${d.title.length>34 ? d.title.slice(0,34)+'…' : d.title}`;
+  const tag = d ? MON_LABEL[d.monetization] : '';
+  return `<b>#${num} 典型代表</b> ${desc}`;
 }
 
 let macroHTML = '';
@@ -426,11 +526,12 @@ MACRO.forEach((m, mi) => {
     const n = byCat[cat]||0;
     const ex = catExampleHTML(cat);
     const isBrowserUse = cat === 'browser-automation';
+    const tagCls = MON_TAG[byNum[CAT_EXAMPLE_DESC[cat]?.[0]]?.monetization]||'low';
     return `<div class="macro-sub ${isBrowserUse?'browser-use':''}">
       <div class="s-name">${CAT_LABEL[cat]||cat}</div>
       <div class="s-count">${n} 个</div>
       <div class="s-example">${ex}</div>
-      <span class="s-tag ${MON_TAG[byNum[CAT_EXAMPLE[cat]]?.monetization]||'low'}">${MON_LABEL[byNum[CAT_EXAMPLE[cat]]?.monetization]||''}</span>
+      <span class="s-tag ${tagCls}">${MON_LABEL[byNum[CAT_EXAMPLE_DESC[cat]?.[0]]?.monetization]||''}</span>
     </div>`;
   }).join('');
   macroHTML += `<div class="macro-item" data-macro="${mi}">
@@ -474,15 +575,6 @@ document.getElementById('highGrid').innerHTML = highItems.map(d=>{
     <div class="how">💰 ${hd[1]}</div>
   </div>`;
 }).join('');
-
-/* ============ 三条洞察 ============ */
-const insights = [
-  { n:'01', t:'同质化严重，同一需求被 10 人各做一遍', d:'桌面壳 51 个、视觉桥 43 个、费用看板 31 个、记忆 42 个…… 官方留白被社区重复做 N 遍。插件开发门槛低，纯「补功能」没有护城河。' },
-  { n:'02', t:'变现的钥匙在云端，不在客户端', d:'高变现的 8 个全部有云服务。纯本地 / 开源插件最高只能到「中」且依赖公司化运营。这是最重要的结论。' },
-  { n:'03', t:'很多帖子是「为爱发电 + 引流」，不是商业模式', d:'大量作者是学生、爱好者，目标是 star / 认可 / 简历。少数有明确商业意图（TMCRA、MemoryLake、Firecrawl、deepDDW 等）——这些才是「能挣钱」的答案。', hl:true },
-];
-document.getElementById('insightsGrid').innerHTML = insights.map(f=>`
-  <div class="insight ${f.hl?'hl':''}"><div class="in">${f.n}</div><h4>${f.t}</h4><p>${f.d}</p></div>`).join('');
 
 /* ============ Q&A ============ */
 const qa = [
